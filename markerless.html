@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WebAR Markerless</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    #ui {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+    }
+    button {
+      padding: 10px 15px; border: none;
+      border-radius: 6px; background: #4caf50;
+      color: white; font-weight: bold; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <a-scene>
+    <a-assets>
+      <a-asset-item id="rumah-sebujit" src="assets/rumah_sebujit.glb"></a-asset-item>
+      <a-asset-item id="nyobeng-sebujit" src="assets/nyobeng_sebujit.glb"></a-asset-item>
+      <a-asset-item id="rumah-jagoi" src="assets/rumah_jagoi.glb"></a-asset-item>
+      <a-asset-item id="gawia-jagoi" src="assets/gawia_jagoi.glb"></a-asset-item>
+
+      <audio id="narasi-sebujit-rumah" src="assets/narasi_rumah_sebujit.mp3"></audio>
+      <audio id="narasi-sebujit-ritual" src="assets/narasi_nyobeng.mp3"></audio>
+      <audio id="narasi-jagoi-rumah" src="assets/narasi_rumah_jagoi.mp3"></audio>
+      <audio id="narasi-jagoi-ritual" src="assets/narasi_gawia.mp3"></audio>
+      <audio id="musik-dayak" src="assets/dayak.mp3"></audio>
+    </a-assets>
+
+    <a-entity id="model-container" position="0 0 -3" scale="0.5 0.5 0.5"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 15000; easing: linear"></a-entity>
+
+    <a-camera position="0 1.6 0"></a-camera>
+  </a-scene>
+
+  <div id="ui">
+    <button onclick="window.location.href='index.html'">⬅ Kembali</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const desa = params.get("desa");
+    const type = params.get("type");
+
+    const container = document.getElementById("model-container");
+    const musikDayak = document.getElementById("musik-dayak");
+
+    const config = {
+      sebujit: {
+        rumah: { model: "#rumah-sebujit", audio: "narasi-sebujit-rumah" },
+        ritual: { model: "#nyobeng-sebujit", audio: "narasi-sebujit-ritual" }
+      },
+      jagoi: {
+        rumah: { model: "#rumah-jagoi", audio: "narasi-jagoi-rumah" },
+        ritual: { model: "#gawia-jagoi", audio: "narasi-jagoi-ritual" }
+      }
+    };
+
+    const cfg = config[desa]?.[type];
+    if (cfg) {
+      container.setAttribute("gltf-model", cfg.model);
+      const narasi = document.getElementById(cfg.audio);
+      musikDayak.play(); narasi.play();
+    }
+  </script>
+</body>
+</html>

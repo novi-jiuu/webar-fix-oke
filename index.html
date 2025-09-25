@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WebAR Kearifan Lokal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #0099cc, #66ccff);
+      color: white;
+    }
+    .container { text-align: center; }
+    h1 { margin-bottom: 20px; }
+    h2 { margin: 15px 0; }
+    button {
+      padding: 12px 20px;
+      margin: 6px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .marker { background: #ff9800; color: white; }
+    .markerless { background: #4caf50; color: white; }
+    button:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ WebAR Kearifan Lokal ✨</h1>
+    <h2>Pilih Desa & Objek:</h2>
+
+    <div>
+      <p>🏡 Desa Sebujit</p>
+      <button class="marker" onclick="location.href='marker.html?desa=sebujit&type=rumah'">📷 Marker - Rumah</button>
+      <button class="marker" onclick="location.href='marker.html?desa=sebujit&type=ritual'">📷 Marker - Nyobeng</button>
+      <button class="markerless" onclick="location.href='markerless.html?desa=sebujit&type=rumah'">🌍 Markerless - Rumah</button>
+      <button class="markerless" onclick="location.href='markerless.html?desa=sebujit&type=ritual'">🌍 Markerless - Nyobeng</button>
+    </div>
+
+    <div>
+      <p>🏡 Desa Jagoi Babang</p>
+      <button class="marker" onclick="location.href='marker.html?desa=jagoi&type=rumah'">📷 Marker - Rumah</button>
+      <button class="marker" onclick="location.href='marker.html?desa=jagoi&type=ritual'">📷 Marker - Gawia Sowa</button>
+      <button class="markerless" onclick="location.href='markerless.html?desa=jagoi&type=rumah'">🌍 Markerless - Rumah</button>
+      <button class="markerless" onclick="location.href='markerless.html?desa=jagoi&type=ritual'">🌍 Markerless - Gawia Sowa</button>
+    </div>
+  </div>
+</body>
+</html>
